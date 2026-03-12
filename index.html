@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Day Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orb orb-1" aria-hidden="true"></div>
+  <div class="bg-orb orb-2" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="app-header">
+      <p class="badge">Neural Calendar Engine</p>
+      <h1>Next Day Predictor</h1>
+      <p class="subhead">
+        Pick a day, run prediction, and let our AI model calculate tomorrow.
+      </p>
+    </header>
+
+    <section class="panel" aria-label="Predictor form">
+      <label for="daySelect">Select a day</label>
+      <div class="controls">
+        <select id="daySelect" aria-label="Select day">
+          <option value="Sunday">Sunday</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select>
+        <button id="predictBtn" type="button">Predict</button>
+      </div>
+
+      <div class="thinking" id="thinkingBox" aria-live="polite" aria-hidden="true">
+        <div class="thinking-copy">
+          <span class="thinking-label">AI analysis in progress</span>
+          <span class="thinking-step" id="thinkingStep">Initializing model...</span>
+        </div>
+        <span class="dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+      </div>
+
+      <div class="result" id="resultBox" aria-live="polite">
+        <p class="result-title">Prediction Output</p>
+        <p class="result-value">Ready for your first prediction.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
