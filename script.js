@@ -15,10 +15,11 @@ const thinkingStep = document.getElementById("thinkingStep");
 const resultValue = document.querySelector(".result-value");
 
 const thinkingSteps = [
-  "Scanning weekly pattern memory...",
-  "Aligning calendar vectors...",
-  "Projecting next-day probabilities...",
-  "Cross-checking temporal consistency...",
+  "Reading selected input day...",
+  "Loading weekly cycle map...",
+  "Applying next-day rule (+1 mod 7)...",
+  "Checking wrap-around edge case...",
+  "Formatting concise final output...",
 ];
 
 function getNextDay(currentDay) {
@@ -48,7 +49,7 @@ predictBtn.addEventListener("click", () => {
   const stepDelayMs = 430;
 
   setThinkingState(true);
-  revealResult("Booting prediction pipeline...");
+  revealResult("Analyzing...");
 
   thinkingSteps.forEach((stepText, index) => {
     setTimeout(() => {
