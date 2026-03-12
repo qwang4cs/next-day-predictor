@@ -15,12 +15,15 @@ const thinkingStep = document.getElementById("thinkingStep");
 const resultValue = document.querySelector(".result-value");
 
 const thinkingSteps = [
-  "Reading selected input day...",
-  "Loading weekly cycle map...",
-  "Applying next-day rule (+1 mod 7)...",
-  "Checking wrap-around edge case...",
-  "Formatting concise final output...",
+  "Parsing selected day input...",
+  "Normalizing to weekday index [0-6]...",
+  "Applying transition rule: (index + 1) % 7...",
+  "Evaluating boundary condition for Saturday...",
+  "Resolving predicted weekday token...",
+  "Preparing minimal final response...",
 ];
+
+const thinkingStepDurationsMs = [340, 470, 420, 540, 380, 320];
 
 function getNextDay(currentDay) {
   const dayIndex = days.indexOf(currentDay);
@@ -46,20 +49,23 @@ function revealResult(message) {
 
 predictBtn.addEventListener("click", () => {
   const selectedDay = daySelect.value;
-  const stepDelayMs = 430;
 
   setThinkingState(true);
-  revealResult("Analyzing...");
+  revealResult("Reasoning...");
+
+  let elapsedMs = 0;
 
   thinkingSteps.forEach((stepText, index) => {
     setTimeout(() => {
       thinkingStep.textContent = stepText;
-    }, index * stepDelayMs);
+    }, elapsedMs);
+
+    elapsedMs += thinkingStepDurationsMs[index] ?? 430;
   });
 
   setTimeout(() => {
     const nextDay = getNextDay(selectedDay);
     setThinkingState(false);
     revealResult(nextDay);
-  }, thinkingSteps.length * stepDelayMs + 260);
+  }, elapsedMs + 200);
 });
